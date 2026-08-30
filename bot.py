@@ -1195,7 +1195,9 @@ async def reject_non_owner_command(message: Message) -> bool:
         getattr(message, "business_connection_id", None),
         _short(getattr(message, "text", None)),
     )
-    return Truedef save_connection_from_api(bc: BusinessConnection):
+    return True
+
+def save_connection_from_api(bc: BusinessConnection):
     rights = getattr(bc, "rights", None)
     enabled = bool(getattr(bc, "is_enabled", True))
     can_reply = business_can_reply(rights)
