@@ -1058,7 +1058,9 @@ async def nick_add_input(message: Message):
     if nick not in nicks:
         nicks.append(nick)
     save_nick_settings(connection_id, nicks=nicks)
-    await show_nick_menu(message, connection_id)def menu() -> InlineKeyboardMarkup:
+    await show_nick_menu(message, connection_id)
+
+def menu() -> InlineKeyboardMarkup:
     return main_menu_keyboard()
 
 def create_mute(connection_id: str, chat_id: int, target_user_id: int, muter_user_id: int, until_ts: int, mode: str) -> str:
