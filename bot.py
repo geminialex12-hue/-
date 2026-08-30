@@ -1380,11 +1380,13 @@ def get_saved(connection_id: str, chat_id: int, message_id: int):
     """, (connection_id, chat_id, message_id)).fetchone()
 
 def delete_saved(connection_id: str, chat_id: int, message_id: int):
-    db.execute("""
-        DELETE FROM messages
-        WHERE connection_id=? AND chat_id=? AND message_id=?
-    """, (connection_id, chat_id, message_id))
-    db.commit()@dp.message(F.text.regexp(r"^/start(?:\s+.*)?$", flags=re.IGNORECASE))
+    db.execute(
+        "DELETE FROM messages WHERE connection_id=? AND chat_id=? AND message_id=?",
+        (connection_id, chat_id, message_id)
+    )
+    db.commit()
+
+@dp.message(F.text.regexp(r"^/start(?:\s+.*)?$", flags=re.IGNORECASE))
 async def start(message: Message):
     log.info("[START] /start received chat=%s user=%s", message.chat.id, getattr(message.from_user, "id", None))
     name = message.from_user.first_name if message.from_user else "пользователь"
