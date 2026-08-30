@@ -497,8 +497,9 @@ async def answer_callback_message(call: CallbackQuery, text: str, **kwargs):
             log.debug("[NAV] could not add home button: %s", exc)
 
     if getattr(old_message, "business_connection_id", None):
-        return await answer_message(old_message, text, **kwargs)
-    return await old_message.answer(text, **kwargs)timezone_waiting = set()
+        return await old_message.answer(text, **kwargs)
+
+timezone_waiting = set()
 
 CITY_TIMEZONES = {
     "москва": "Europe/Moscow", "moscow": "Europe/Moscow",
