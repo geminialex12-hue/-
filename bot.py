@@ -3310,7 +3310,7 @@ async def business_message(message: Message):
                 await simple_extra_command(message, base)
             elif command_text.lower().startswith('.send'):
                 log.info("[COMMAND] .send")
-                await send_command_old(message)  # будет переопределён в части 4
+                await send_command(message)
             elif command_text.lower() == '.nick':
                 log.info("[COMMAND] .nick")
                 await show_nick_menu(message, connection_id)
